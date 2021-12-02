@@ -29,7 +29,10 @@ fileLoc = './subDividedExpoFiles/'
 os.makedirs(fileLoc, exist_ok=True)
 def saveOutput(name, out, PT, fileLoc):
     """Save exposure files with consistent location and naming"""
-    out.to_csv(str(fileLoc)+'oqBldgExp_'+str(PT)+'_'+str(name)+'.csv', index=False)
+    if name == PT:
+        out.to_csv(str(fileLoc)+'oqBldgExp_'+str(PT)+'_allprov.csv', index=False)
+    else:
+        out.to_csv(str(fileLoc)+'oqBldgExp_'+str(PT)+'_'+str(name)+'.csv', index=False)
     del(out)
 
     
@@ -231,6 +234,8 @@ for i, row in provs.iterrows():
     print('Working on '+str(PT))
     print('---------------------------------------------------')
     df = masterdf[masterdf['pruid'] == PTID]
+    #export provincial scale dataset
+    saveOutput(PT,df,PT,fileLoc)
     # for each 1st character of FSA
     for char in df['fsauid'].str[0].unique():
         numAssets = df['fsauid'][df['fsauid'].str.contains(re.escape(char) + r"[0-9][A-Z]")].count()
