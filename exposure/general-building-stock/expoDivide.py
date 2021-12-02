@@ -92,7 +92,8 @@ planRs = pd.DataFrame([(['Thérèse-De Blainville', 'Les Moulins', 'L\'Assomptio
                        ('Division No. 11', 'T', 'Edmonton'),
                        (['Division No. 18', 'Division No. 12', 'Division No. 13', 'Division No. 19', 'Division No. 17', 'Division No. 16'], 'T', 'Northern'),
                        ('Greater Vancouver', 'V', 'Vancouver'), 
-                       (['Central Coast', 'Mount Waddington', 'Strathcona', 'Powell River', 'Alberni-Clayoquot', 'Cowichan Valley', 'Comox Valley', 'Nanaimo', 'Sunshine Coast', 'Skeena-Queen Charlotte', 'Squamish-Lillooet'], 'V', 'Coastal'),
+                       (['Central Coast', 'Mount Waddington', 'Powell River', 'Sunshine Coast', 'Skeena-Queen Charlotte', 'Squamish-Lillooet'], 'V', 'Coastal'),
+                       (['Strathcona', 'Alberni-Clayoquot', 'Cowichan Valley', 'Comox Valley', 'Nanaimo'], 'V', 'Central Island'),
                        (['Central Okanagan', 'Okanagan-Similkameen A', 'Thompson-Nicola', 'North Okanagan', 'Kootenay Boundary', 'East Kootenay', 'Columbia-Shuswap', 'Central Kootenay'], 'V', 'OkanaganKootenay'),
                        ('Fraser Valley', 'V', 'FraserValley'), 
                        ('Capital', 'V', 'Capital')],
@@ -486,6 +487,7 @@ check2 = check.sort_values('id').round(4).reset_index(drop=True)
 print('The length of the master is '+str(len(masterdf))+' and the length of combined expo files (check) is '+str(len(check))+'.')
 
 ### Test using 'eq' 
+"""
 eqtest1 = check2.eq(master2)
 if ((check2.columns).equals((master2.columns))) & ((check2.index).equals((master2.index))) & (eqtest1.all(axis=0).all()) & (eqtest1.all(axis=1).all()):
     print('Columns & indices match between master file and concatenated new exposure files')
@@ -503,7 +505,7 @@ if eqtest.empty:
 
 ### NOTE: Test using 'equals' fails because there are different data types (dtypes)
 #print('Do the new exposure files match the master file? '+str(check2.equals(master2)))
-
+"""
 
 
 ##############################################################################################
